@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./App.css";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-
 const mainData = [
   {
     listName: "characters1",
@@ -128,36 +127,40 @@ function App() {
       <header className="App-header">
         <h1>Final Space Characters</h1>
         <DragDropContext onDragEnd={handleOnDragEnd}>
-          {data.map((list) => {
-            return (
-              <Droppable droppableId={list.listName} key={list.listName}>
-                {(provided) => (
-                  <ul
-                    className="characters"
-                    {...provided.droppableProps}
-                    ref={provided.innerRef}
-                  >
-                    {list.listArray.map(({ id, name, thumb }, index) => {
-                      return (
-                        <Draggable key={id} draggableId={id} index={index}>
-                          {(provided) => (
-                            <li
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                            >
-                              <p>{name}</p>
-                            </li>
-                          )}
-                        </Draggable>
-                      );
-                    })}
-                    {provided.placeholder}
-                  </ul>
-                )}
-              </Droppable>
-            );
-          })}
+          <div className="lists-container">
+            {data.map((list) => {
+              return (
+                <div className="list-item">
+                  <Droppable droppableId={list.listName} key={list.listName}>
+                    {(provided) => (
+                      <ul
+                        className="characters"
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                      >
+                        {list.listArray.map(({ id, name, thumb }, index) => {
+                          return (
+                            <Draggable key={id} draggableId={id} index={index}>
+                              {(provided) => (
+                                <li
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                >
+                                  <p>{name}</p>
+                                </li>
+                              )}
+                            </Draggable>
+                          );
+                        })}
+                        {provided.placeholder}
+                      </ul>
+                    )}
+                  </Droppable>
+                </div>
+              );
+            })}
+          </div>
         </DragDropContext>
       </header>
     </div>

@@ -72,3 +72,17 @@
   width: 100%;
   height: auto;
 }
+
+.lists-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-item {
+  padding: 32px;
+  border: solid 2px #d0d0d0;
+  border-radius: .2em;
+  margin: 32px;
+}
